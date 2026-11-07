@@ -309,11 +309,7 @@ footer a {
 </footer>
 
 <script>
-function searchPoems() {
-  const input = document.getElementById("searchInput");
-  const search = input.value.toLowerCase();
-  const cards = document.querySelectorAll(".poem-card");
-  let found = 0;
+
 
   cards.forEach(function(card) {
     const text = card.innerText.toLowerCase();
