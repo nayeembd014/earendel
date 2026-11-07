@@ -330,13 +330,101 @@ function searchPoems() {
     found === 0 ? "block" : "none";
 }
 
-function showPoem(button) {
-  const card = button.closest(".poem-card");
-  const title = card.querySelector("h2").innerText;
-  const poem = card.querySelector("p").innerText;
 
-  alert(title + "\n\n" + poem);
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="config.js"></script>
+
+<script>
+const db = window.supabase.createClient(
+  SUPABASE_URL,
+  SUPABASE_PUBLISHABLE_KEY
+);
+
+const grid = document.getElementById("poetryGrid");
+const emptyMessage = document.getElementById("emptyMessage");
+
+async function loadPoems() {
+  grid.innerHTML = "<p>কবিতা লোড হচ্ছে...</p>";
+
+  const { data, error } = await db
+    .from("posts")
+    .select("title, category, content, created_at")
+    .eq("category", "poetry")
+    .eq("status", "published")
+    .order("created_at", { ascending: false });
+
+  if (error) {
+    console.error("Poetry loading error:", error);
+    grid.innerHTML = "<p>কবিতা লোড করা যায়নি।</p>";
+    return;
+  }
+
+  grid.innerHTML = "";
+
+  if (!data || data.length === 0) {
+    emptyMessage.style.display = "block";
+    emptyMessage.textContent = "এখনো কোনো Published কবিতা নেই।";
+    return;
+  }
+
+  emptyMessage.style.display = "none";
+
+  data.forEach(function(poem) {
+    const card = document.createElement("article");
+    card.className = "poem-card";
+
+    const category = document.createElement("span");
+    category.className = "category";
+    category.textContent = "কবিতা";
+
+    const title = document.createElement("h2");
+    title.textContent = poem.title || "Untitled";
+
+    const content = document.createElement("p");
+    content.textContent = poem.content || "";
+
+    const button = document.createElement("button");
+    button.textContent = "কবিতাটি পড়ুন";
+
+    button.addEventListener("click", function() {
+      alert(title.textContent + "\n\n" + content.textContent);
+    });
+
+    card.append(category, title, content, button);
+    grid.appendChild(card);
+  });
+
+  searchPoems();
 }
+
+function searchPoems() {
+  const input = document.getElementById("searchInput");
+  const search = input.value.toLowerCase();
+
+  const cards = document.querySelectorAll(".poem-card");
+  let found = 0;
+
+  cards.forEach(function(card) {
+    const matches = card.innerText.toLowerCase().includes(search);
+
+    card.style.display = matches ? "" : "none";
+
+    if (matches) {
+      found++;
+    }
+  });
+
+  if (found === 0) {
+    emptyMessage.style.display = "block";
+    emptyMessage.textContent = "এই নামে কোনো কবিতা পাওয়া যায়নি।";
+  } else {
+    emptyMessage.style.display = "none";
+  }
+}
+
+loadPoems();
+</script>
+
 </script>
 
 </body>
