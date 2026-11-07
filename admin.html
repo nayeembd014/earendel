@@ -1,1 +1,166 @@
 
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>EARENDEL | Admin Login</title>
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Noto+Serif+Bengali:wght@400;500;600&family=Cormorant+Garamond:wght@400;500;600&display=swap');
+
+*{box-sizing:border-box;margin:0;padding:0}
+
+body{
+ min-height:100vh;
+ display:flex;
+ align-items:center;
+ justify-content:center;
+ background:radial-gradient(ellipse at center,#29221c,#08090d 70%);
+ color:#eee9df;
+ font-family:'Noto Serif Bengali',serif;
+ padding:20px;
+}
+
+.login-box{
+ width:100%;
+ max-width:430px;
+ padding:45px 35px;
+ background:#111217;
+ border:1px solid #49402f;
+ text-align:center;
+}
+
+.logo{
+ color:#d6b875;
+ font:500 40px 'Cormorant Garamond',serif;
+ letter-spacing:6px;
+}
+
+.subtitle{
+ color:#aaa69e;
+ font-size:13px;
+ margin:12px 0 35px;
+}
+
+h2{
+ font-weight:400;
+ margin-bottom:25px;
+}
+
+input{
+ width:100%;
+ padding:15px;
+ margin-bottom:16px;
+ border:1px solid #39352e;
+ background:#090a0e;
+ color:white;
+ outline:none;
+ font-family:inherit;
+}
+
+input:focus{border-color:#d6b875}
+
+button{
+ width:100%;
+ padding:14px;
+ border:0;
+ background:#c7a86b;
+ color:#08090d;
+ font-family:inherit;
+ font-size:15px;
+ cursor:pointer;
+}
+
+button:hover{background:#e1c58b}
+
+#message{
+ margin-top:20px;
+ font-size:13px;
+ color:#d6b875;
+}
+
+.back{
+ display:inline-block;
+ margin-top:25px;
+ color:#aaa69e;
+ text-decoration:none;
+ font-size:13px;
+}
+</style>
+</head>
+
+<body>
+
+<div class="login-box">
+  <div class="logo">EARENDEL</div>
+  <p class="subtitle">THE PRIVATE WRITER'S SPACE</p>
+
+  <h2>Admin Login</h2>
+
+  <form id="loginForm">
+    <input type="email" id="email" placeholder="Your Email Address" required>
+    <input type="password" id="password" placeholder="Your Password" required>
+    <button type="submit" id="loginButton">Enter Dashboard</button>
+  </form>
+
+  <p id="message"></p>
+
+  <a class="back" href="index.html">← Back to Website</a>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="config.js"></script>
+
+<script>
+const supabaseClient = window.supabase.createClient(
+  SUPABASE_URL,
+  SUPABASE_PUBLISHABLE_KEY
+);
+
+const form = document.getElementById('loginForm');
+const message = document.getElementById('message');
+const loginButton = document.getElementById('loginButton');
+
+form.addEventListener('submit', async function(e){
+  e.preventDefault();
+
+  loginButton.disabled = true;
+  loginButton.textContent = 'Checking...';
+  message.textContent = '';
+
+  const email = document.getElementById('email').value;
+  const password = document.getElementById('password').value;
+
+  const {data, error} = await supabaseClient.auth.signInWithPassword({
+    email,
+    password
+  });
+
+  if(error){
+    message.textContent = error.message;
+    loginButton.disabled = false;
+    loginButton.textContent = 'Enter Dashboard';
+    return;
+  }
+
+  const {data: profile, error: profileError} = await supabaseClient
+    .from('profiles')
+    .select('role')
+    .eq('id', data.user.id)
+    .single();
+
+  if(profileError || !['owner','admin','editor'].includes(profile.role)){
+    await supabaseClient.auth.signOut();
+    message.textContent = 'You do not have dashboard permission.';
+    loginButton.disabled = false;
+    loginButton.textContent = 'Enter Dashboard';
+    return;
+  }
+
+  window.location.href = 'dashboard.html';
+});
+</script>
+
+</body>
+</html>
