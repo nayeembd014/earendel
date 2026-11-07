@@ -1,1 +1,157 @@
 
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Novels | EARENDEL</title>
+  <link rel="stylesheet" href="styles.css">
+
+  <style>
+    .novels-hero {
+      text-align: center;
+      padding: 85px 20px 55px;
+    }
+    .novels-hero .eyebrow {
+      color: #c5a46d;
+      letter-spacing: 4px;
+      font-size: 12px;
+    }
+    .novels-hero h1 {
+      font-size: clamp(42px, 8vw, 76px);
+      margin: 20px 0;
+    }
+    .novels-hero p {
+      max-width: 620px;
+      margin: auto;
+      line-height: 2;
+      opacity: .75;
+    }
+    .novels-tools {
+      max-width: 1000px;
+      margin: 20px auto 40px;
+      padding: 0 20px;
+    }
+    .novels-tools input {
+      width: 100%;
+      box-sizing: border-box;
+      padding: 15px 18px;
+      border: 1px solid #a88b60;
+      border-radius: 8px;
+      background: transparent;
+      color: inherit;
+      font-size: 16px;
+    }
+    .novels-grid {
+      max-width: 1100px;
+      margin: auto;
+      padding: 0 20px 80px;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 24px;
+    }
+    .novel-card {
+      border: 1px solid rgba(190,160,110,.3);
+      border-radius: 12px;
+      padding: 28px;
+      transition: .3s;
+    }
+    .novel-card:hover {
+      transform: translateY(-5px);
+      border-color: #c5a46d;
+    }
+    .novel-card small {
+      color: #c5a46d;
+      letter-spacing: 2px;
+    }
+    .novel-card h2 {
+      margin: 18px 0 12px;
+    }
+    .novel-card p {
+      line-height: 1.9;
+      opacity: .75;
+    }
+    .novel-card .status {
+      display: inline-block;
+      margin-top: 12px;
+      font-size: 12px;
+      color: #c5a46d;
+    }
+    @media(max-width:600px) {
+      .novels-hero { padding-top: 55px; }
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <nav>
+      <a href="index.html">EARENDEL</a>
+      <a href="index.html">Home</a>
+      <a href="poetry.html">Poetry</a>
+      <a href="stories.html">Stories</a>
+      <a href="novels.html">Novels</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="novels-hero">
+      <div class="eyebrow">THE WORLD OF NOVELS</div>
+      <h1>উপন্যাসের <span>জগৎ</span></h1>
+      <p>
+        কিছু গল্প কয়েকটি পাতায় শেষ হয় না।
+        চরিত্র, অনুভূতি আর সময়ের সঙ্গে তারা
+        হয়ে ওঠে একেকটি দীর্ঘ যাত্রা।
+        স্বাগতম উপন্যাসের পৃথিবীতে।
+      </p>
+    </section>
+
+    <section class="novels-tools">
+      <input
+        type="search"
+        id="novelSearch"
+        placeholder="উপন্যাসের নাম খুঁজুন..."
+        aria-label="উপন্যাস খুঁজুন"
+      >
+    </section>
+
+    <section class="novels-grid">
+      <article class="novel-card">
+        <small>ROMANTIC NOVEL</small>
+        <h2>অপূর্ণ ভালোবাসা</h2>
+        <p>দুটি মানুষের গল্প, যাদের অনুভূতি ছিল সত্যি, কিন্তু সময় ছিল না তাদের পক্ষে।</p>
+        <div class="status">শীঘ্রই আসছে</div>
+      </article>
+
+      <article class="novel-card">
+        <small>LIFE & REALITY</small>
+        <h2>জীবনের ওপারে</h2>
+        <p>স্বপ্ন, সংগ্রাম আর হারিয়ে না যাওয়ার এক দীর্ঘ গল্প।</p>
+        <div class="status">শীঘ্রই আসছে</div>
+      </article>
+
+      <article class="novel-card">
+        <small>EMOTIONAL NOVEL</small>
+        <h2>শেষ অধ্যায়</h2>
+        <p>কিছু বিদায় শেষ হয়ে যায়, কিন্তু কিছু স্মৃতি থেকে যায় সারাজীবন।</p>
+        <div class="status">শীঘ্রই আসছে</div>
+      </article>
+    </section>
+  </main>
+
+  <script>
+    const search = document.getElementById("novelSearch");
+    const cards = document.querySelectorAll(".novel-card");
+
+    search.addEventListener("input", function () {
+      const value = this.value.toLowerCase();
+
+      cards.forEach(card => {
+        card.style.display = card.innerText.toLowerCase().includes(value)
+          ? ""
+          : "none";
+      });
+    });
+  </script>
+</body>
+</html>
