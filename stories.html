@@ -1,1 +1,154 @@
 
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Stories | EARENDEL</title>
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    .stories-hero {
+      text-align: center;
+      padding: 85px 20px 55px;
+    }
+    .stories-hero .eyebrow {
+      color: #c5a46d;
+      letter-spacing: 4px;
+      font-size: 12px;
+    }
+    .stories-hero h1 {
+      font-size: clamp(42px, 8vw, 76px);
+      margin: 20px 0;
+    }
+    .stories-hero p {
+      max-width: 600px;
+      margin: auto;
+      line-height: 2;
+      opacity: .75;
+    }
+    .stories-tools {
+      max-width: 1000px;
+      margin: 20px auto 40px;
+      padding: 0 20px;
+    }
+    .stories-tools input {
+      width: 100%;
+      padding: 15px 18px;
+      border: 1px solid #a88b60;
+      border-radius: 8px;
+      background: transparent;
+      color: inherit;
+      font-size: 16px;
+    }
+    .stories-grid {
+      max-width: 1100px;
+      margin: auto;
+      padding: 0 20px 80px;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 24px;
+    }
+    .story-card {
+      border: 1px solid rgba(190,160,110,.3);
+      border-radius: 12px;
+      padding: 28px;
+      transition: .3s;
+    }
+    .story-card:hover {
+      transform: translateY(-5px);
+      border-color: #c5a46d;
+    }
+    .story-card small {
+      color: #c5a46d;
+      letter-spacing: 2px;
+    }
+    .story-card h2 {
+      margin: 18px 0 12px;
+    }
+    .story-card p {
+      line-height: 1.9;
+      opacity: .75;
+    }
+    .story-card a {
+      display: inline-block;
+      margin-top: 15px;
+      color: #c5a46d;
+      text-decoration: none;
+    }
+    @media(max-width:600px) {
+      .stories-hero { padding-top: 55px; }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <nav>
+      <a href="index.html">EARENDEL</a>
+      <a href="index.html">Home</a>
+      <a href="poetry.html">Poetry</a>
+      <a href="stories.html">Stories</a>
+      <a href="novels.html">Novels</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="stories-hero">
+      <div class="eyebrow">THE WORLD OF STORIES</div>
+      <h1>গল্পের <span>পৃথিবী</span></h1>
+      <p>
+        কিছু গল্প কল্পনায় জন্ম নেয়, কিছু গল্প বেঁচে থাকে
+        আমাদের জীবনের ভাঁজে। এখানে খুঁজে নাও শব্দের
+        ভেতরে লুকিয়ে থাকা সেই গল্পগুলো।
+      </p>
+    </section>
+
+    <section class="stories-tools">
+      <input
+        type="search"
+        id="storySearch"
+        placeholder="গল্পের নাম খুঁজুন..."
+        aria-label="গল্প খুঁজুন"
+      >
+    </section>
+
+    <section class="stories-grid" id="storiesGrid">
+      <article class="story-card">
+        <small>LOVE & EMOTIONS</small>
+        <h2>অপেক্ষার শেষ বিকেল</h2>
+        <p>কিছু অপেক্ষার কোনো শেষ হয় না, তবুও মানুষ অপেক্ষা করে যায়...</p>
+        <a href="#">গল্পটি পড়ুন →</a>
+      </article>
+
+      <article class="story-card">
+        <small>HEARTBREAK</small>
+        <h2>শেষ চিঠি</h2>
+        <p>যে কথাগুলো কখনো বলা হয়নি, সেগুলোই একদিন চিঠি হয়ে ফিরে আসে...</p>
+        <a href="#">গল্পটি পড়ুন →</a>
+      </article>
+
+      <article class="story-card">
+        <small>REAL LIFE</small>
+        <h2>জীবনের গল্প</h2>
+        <p>প্রতিটি মানুষের বুকের ভেতরেই লুকিয়ে থাকে না বলা এক গল্প...</p>
+        <a href="#">গল্পটি পড়ুন →</a>
+      </article>
+    </section>
+  </main>
+
+  <script>
+    const search = document.getElementById("storySearch");
+    const cards = document.querySelectorAll(".story-card");
+
+    search.addEventListener("input", function () {
+      const value = this.value.toLowerCase();
+      cards.forEach(card => {
+        card.style.display = card.innerText.toLowerCase().includes(value)
+          ? ""
+          : "none";
+      });
+    });
+  </script>
+
+</body>
+</html>
