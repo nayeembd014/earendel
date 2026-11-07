@@ -2,300 +2,967 @@
 <!DOCTYPE html>
 <html lang="bn">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>EARENDEL | A World of Words</title>
+<title>EARENDEL — A World of Words</title>
 
-  <meta name="description" content="EARENDEL — কবিতা, গল্প ও উপন্যাসের একটি সাহিত্যিক জগৎ।">
+<meta name="description" content="EARENDEL — কবিতা, গল্প, উপন্যাস ও অনুভূতির সাহিত্যিক জগৎ।">
 
-  <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+Bengali:wght@400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
 
-    body {
-      background: #101522;
-      color: #f5f0e6;
-      font-family: Georgia, "Noto Serif Bengali", serif;
-      line-height: 1.8;
-    }
+<style>
 
-    header {
-      padding: 25px 8%;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      border-bottom: 1px solid #303442;
-    }
+:root {
+  --bg: #f5f0e8;
+  --paper: #fffaf2;
+  --text: #30231f;
+  --muted: #82736a;
+  --accent: #843f45;
+  --gold: #b28a50;
+  --border: #e5d9ca;
+}
 
-    .logo {
-      color: #d4af70;
-      font-size: 27px;
-      letter-spacing: 5px;
-      font-weight: bold;
-    }
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
 
-    nav a {
-      color: #d4d0c8;
-      text-decoration: none;
-      margin-left: 20px;
-      font-size: 14px;
-    }
+html {
+  scroll-behavior: smooth;
+}
 
-    nav a:hover {
-      color: #d4af70;
-    }
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: "Noto Serif Bengali", serif;
+  line-height: 1.8;
+}
 
-    .hero {
-      min-height: 75vh;
-      padding: 100px 20px;
-      text-align: center;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
+a {
+  color: inherit;
+  text-decoration: none;
+}
 
-      background:
-        radial-gradient(
-          circle at top,
-          #283047,
-          #101522 65%
-        );
-    }
+.container {
+  width: min(1120px, 90%);
+  margin: auto;
+}
 
-    .hero small {
-      color: #d4af70;
-      letter-spacing: 4px;
-      margin-bottom: 25px;
-    }
+/* NAVIGATION */
 
-    .hero h1 {
-      font-size: clamp(42px, 8vw, 85px);
-      letter-spacing: 8px;
-      color: #f5f0e6;
-    }
+header {
+  background: var(--paper);
+  border-bottom: 1px solid var(--border);
+}
 
-    .hero p {
-      color: #b9b8c2;
-      font-size: 18px;
-      margin: 15px 0 30px;
-    }
+.navbar {
+  min-height: 85px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 25px;
+}
 
-    .hero button {
-      padding: 13px 30px;
-      background: transparent;
-      border: 1px solid #d4af70;
-      color: #d4af70;
-      cursor: pointer;
-      font-size: 15px;
-    }
+.logo {
+  font-family: "Playfair Display", serif;
+  color: var(--accent);
+  font-size: 28px;
+  font-weight: 700;
+  letter-spacing: 5px;
+}
 
-    .hero button:hover {
-      background: #d4af70;
-      color: #101522;
-    }
+.nav-links {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 25px;
+}
 
-    section {
-      padding: 75px 8%;
-    }
+.nav-links a {
+  font-size: 14px;
+  color: var(--text);
+  transition: 0.3s;
+}
 
-    .section-title {
-      text-align: center;
-      margin-bottom: 40px;
-    }
+.nav-links a:hover {
+  color: var(--accent);
+}
 
-    .section-title h2 {
-      color: #d4af70;
-      font-size: 30px;
-    }
+/* HERO */
 
-    .section-title p {
-      color: #9699a8;
-      margin-top: 8px;
-    }
+.hero {
+  position: relative;
+  overflow: hidden;
+  padding: 110px 20px 95px;
+  text-align: center;
 
-    .about {
-      max-width: 750px;
-      margin: auto;
-      text-align: center;
-      color: #c6c5ce;
-    }
+  background:
+    radial-gradient(
+      ellipse at 50% 20%,
+      #ead9c8 0%,
+      #f5f0e8 65%
+    );
+}
 
-    .library {
-      background: #151a28;
-    }
+.hero::before {
+  content: "✦";
+  position: absolute;
+  top: 65px;
+  left: 12%;
+  font-size: 50px;
+  color: #b28a50;
+  opacity: 0.5;
+}
 
-    .cards {
-      display: grid;
-      grid-template-columns:
-        repeat(auto-fit, minmax(220px, 1fr));
-      gap: 20px;
-    }
+.hero::after {
+  content: "❦";
+  position: absolute;
+  right: 12%;
+  bottom: 65px;
+  font-size: 65px;
+  color: #843f45;
+  opacity: 0.12;
+}
 
-    .card {
-      padding: 30px;
-      border: 1px solid #303442;
-      background: #101522;
-      transition: 0.3s;
-    }
+.eyebrow {
+  color: var(--accent);
+  letter-spacing: 4px;
+  font-size: 12px;
+  text-transform: uppercase;
+}
 
-    .card:hover {
-      border-color: #d4af70;
-      transform: translateY(-5px);
-    }
+.hero h1 {
+  font-family: "Playfair Display", serif;
+  font-size: clamp(48px, 9vw, 105px);
+  letter-spacing: 9px;
+  line-height: 1.2;
+  margin: 20px 0;
+  color: #382722;
+}
 
-    .card .symbol {
-      font-size: 35px;
-      color: #d4af70;
-    }
+.hero-subtitle {
+  font-size: 20px;
+  color: #66534a;
+  margin-bottom: 15px;
+}
 
-    .card h3 {
-      margin: 15px 0;
-      color: #f5f0e6;
-    }
+.hero-description {
+  max-width: 570px;
+  margin: 0 auto 30px;
+  color: var(--muted);
+  font-size: 15px;
+}
 
-    .card p {
-      color: #a9a9b5;
-      font-size: 14px;
-    }
+.buttons {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 14px;
+}
 
-    .quote {
-      text-align: center;
-      max-width: 700px;
-      margin: auto;
-      color: #d4af70;
-      font-size: 23px;
-      font-style: italic;
-    }
+.btn {
+  display: inline-block;
+  padding: 12px 26px;
+  border: 1px solid var(--accent);
+  background: var(--accent);
+  color: white;
+  font-size: 14px;
+  transition: 0.3s;
+}
 
-    footer {
-      padding: 30px 20px;
-      text-align: center;
-      border-top: 1px solid #303442;
-      color: #858795;
-      font-size: 13px;
-    }
+.btn:hover {
+  background: #633036;
+  transform: translateY(-2px);
+}
 
-    @media (max-width: 600px) {
-      header {
-        flex-direction: column;
-        gap: 15px;
-      }
+.btn-outline {
+  background: transparent;
+  color: var(--accent);
+}
 
-      nav a {
-        margin: 0 8px;
-      }
+.btn-outline:hover {
+  color: white;
+}
 
-      .hero {
-        min-height: 65vh;
-      }
-    }
-  </style>
+/* DECORATIVE LINE */
+
+.ornament {
+  text-align: center;
+  color: var(--gold);
+  font-size: 22px;
+  margin: 15px 0;
+}
+
+/* SECTION */
+
+section {
+  padding: 75px 0;
+}
+
+.section-heading {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.section-heading small {
+  color: var(--accent);
+  letter-spacing: 3px;
+  font-size: 11px;
+  text-transform: uppercase;
+}
+
+.section-heading h2 {
+  font-size: 32px;
+  margin: 8px 0;
+  color: var(--text);
+}
+
+.section-heading p {
+  color: var(--muted);
+  font-size: 14px;
+}
+
+/* INTRO */
+
+.intro {
+  background: var(--paper);
+}
+
+.intro-content {
+  max-width: 780px;
+  margin: auto;
+  text-align: center;
+}
+
+.intro-content p {
+  color: #68584f;
+  font-size: 16px;
+}
+
+.intro-signature {
+  margin-top: 25px;
+  color: var(--accent);
+  font-style: italic;
+}
+
+/* FEATURED */
+
+.featured {
+  background: var(--bg);
+}
+
+.featured-card {
+  display: grid;
+  grid-template-columns: 1fr 1.2fr;
+  background: var(--paper);
+  border: 1px solid var(--border);
+}
+
+.featured-art {
+  min-height: 300px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background:
+    radial-gradient(circle, #a56c69, #843f45 70%);
+  color: #f9ead6;
+  font-size: 100px;
+}
+
+.featured-content {
+  padding: 40px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.tag {
+  color: var(--accent);
+  font-size: 12px;
+  letter-spacing: 2px;
+}
+
+.featured-content h3 {
+  font-size: 28px;
+  margin: 12px 0;
+}
+
+.featured-content p {
+  color: var(--muted);
+  font-size: 14px;
+  margin-bottom: 20px;
+}
+
+.text-link {
+  color: var(--accent);
+  font-weight: 600;
+}
+
+/* LIBRARY */
+
+.library {
+  background: #eee5d9;
+}
+
+.cards {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 22px;
+}
+
+.card {
+  background: var(--paper);
+  border: 1px solid var(--border);
+  padding: 30px;
+  transition: 0.3s;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  border-color: var(--gold);
+}
+
+.card-icon {
+  color: var(--gold);
+  font-size: 35px;
+}
+
+.card h3 {
+  font-size: 22px;
+  margin: 12px 0;
+}
+
+.card p {
+  color: var(--muted);
+  font-size: 14px;
+  margin-bottom: 18px;
+}
+
+.card .text-link {
+  font-size: 13px;
+}
+
+/* RECENT WRITINGS */
+
+.writings {
+  background: var(--paper);
+}
+
+.writing-list {
+  max-width: 850px;
+  margin: auto;
+}
+
+.writing-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+  padding: 23px 0;
+  border-bottom: 1px solid var(--border);
+}
+
+.writing-item h3 {
+  font-size: 20px;
+  margin: 4px 0;
+}
+
+.writing-item p {
+  color: var(--muted);
+  font-size: 13px;
+}
+
+.writing-type {
+  color: var(--accent);
+  font-size: 11px;
+  letter-spacing: 2px;
+}
+
+/* QUOTE */
+
+.quote-section {
+  background: #843f45;
+  color: #fff6e8;
+  text-align: center;
+  padding: 80px 20px;
+}
+
+.quote-section .quote {
+  max-width: 800px;
+  margin: auto;
+  font-size: clamp(22px, 4vw, 34px);
+  line-height: 1.9;
+}
+
+.quote-section small {
+  display: block;
+  margin-top: 20px;
+  color: #e3c7a7;
+}
+
+/* ABOUT */
+
+.about {
+  background: var(--bg);
+}
+
+.about-content {
+  max-width: 800px;
+  margin: auto;
+  text-align: center;
+}
+
+.about-content p {
+  color: #68584f;
+  margin-bottom: 15px;
+}
+
+/* CONTACT */
+
+.contact {
+  background: var(--paper);
+  text-align: center;
+}
+
+.contact p {
+  color: var(--muted);
+  margin: 10px 0 25px;
+}
+
+/* FOOTER */
+
+footer {
+  background: #30231f;
+  color: #e8d9c8;
+  padding: 45px 20px;
+  text-align: center;
+}
+
+.footer-logo {
+  font-family: "Playfair Display", serif;
+  font-size: 25px;
+  letter-spacing: 5px;
+  color: #d6b27a;
+}
+
+footer p {
+  color: #c4b4a5;
+  font-size: 13px;
+  margin-top: 8px;
+}
+
+.footer-links {
+  margin: 20px 0;
+}
+
+.footer-links a {
+  margin: 0 10px;
+  font-size: 13px;
+}
+
+.copyright {
+  margin-top: 25px;
+  padding-top: 20px;
+  border-top: 1px solid #51403a;
+}
+
+/* MOBILE */
+
+@media (max-width: 750px) {
+
+  .navbar {
+    flex-direction: column;
+    padding: 20px 0;
+  }
+
+  .nav-links {
+    justify-content: center;
+    gap: 14px;
+  }
+
+  .hero {
+    padding: 85px 20px;
+  }
+
+  .hero h1 {
+    letter-spacing: 4px;
+  }
+
+  .hero::before {
+    left: 5%;
+  }
+
+  .hero::after {
+    right: 5%;
+  }
+
+  .featured-card {
+    grid-template-columns: 1fr;
+  }
+
+  .featured-art {
+    min-height: 180px;
+  }
+
+  .featured-content {
+    padding: 25px;
+  }
+
+  .cards {
+    grid-template-columns: 1fr;
+  }
+
+  section {
+    padding: 55px 0;
+  }
+
+  .writing-item {
+    align-items: flex-start;
+  }
+
+  .section-heading h2 {
+    font-size: 27px;
+  }
+}
+
+</style>
 </head>
 
 <body>
 
-  <header>
-    <div class="logo">EARENDEL</div>
+<header>
+  <div class="container navbar">
 
-    <nav>
+    <a href="#home" class="logo">EARENDEL</a>
+
+    <nav class="nav-links">
       <a href="#home">Home</a>
+      <a href="#intro">আমার জগৎ</a>
+      <a href="#library">সাহিত্য</a>
+      <a href="#writings">নতুন লেখা</a>
       <a href="#about">About</a>
-      <a href="#library">Library</a>
+      <a href="#contact">Contact</a>
     </nav>
-  </header>
 
-  <main>
+  </div>
+</header>
 
-    <section class="hero" id="home">
+<main>
 
-      <small>A WORLD OF WORDS</small>
+<!-- HERO -->
 
-      <h1>EARENDEL</h1>
+<section class="hero" id="home">
 
-      <p>কিছু অনুভূতি শব্দ হয়ে বেঁচে থাকে।</p>
+  <div class="container">
 
-      <button onclick="document.getElementById('library').scrollIntoView({behavior:'smooth'})">
-        Explore My World
-      </button>
+    <p class="eyebrow">A WORLD OF WORDS</p>
 
-    </section>
+    <h1>EARENDEL</h1>
 
-    <section id="about">
+    <p class="hero-subtitle">
+      শব্দের ভেতরে এক অন্য পৃথিবী।
+    </p>
 
-      <div class="section-title">
-        <h2>আমার সাহিত্যিক জগৎ</h2>
-        <p>About EARENDEL</p>
+    <p class="hero-description">
+      কিছু অনুভূতি বলা যায় না,
+      কিছু গল্প শেষ হয় না।
+      আর কিছু শব্দ চিরকাল বেঁচে থাকে।
+      EARENDEL সেইসব অনুভূতির একটি ঠিকানা।
+    </p>
+
+    <div class="buttons">
+
+      <a href="#writings" class="btn">
+        আমার লেখা পড়ুন
+      </a>
+
+      <a href="#intro" class="btn btn-outline">
+        Explore EARENDEL
+      </a>
+
+    </div>
+
+    <div class="ornament">✦ ❦ ✦</div>
+
+  </div>
+
+</section>
+
+<!-- INTRO -->
+
+<section class="intro" id="intro">
+
+  <div class="container">
+
+    <div class="section-heading">
+
+      <small>WELCOME TO MY WORLD</small>
+
+      <h2>আমার সাহিত্যিক জগৎ</h2>
+
+      <p>একটি শব্দ থেকে শুরু হয় অসংখ্য অনুভূতি</p>
+
+    </div>
+
+    <div class="intro-content">
+
+      <p>
+        EARENDEL শুধু একটি Website নয়,
+        এটি আমার লেখা, অনুভূতি এবং
+        কল্পনার একটি ছোট্ট পৃথিবী।
+      </p>
+
+      <p>
+        এখানে কিছু কবিতা জন্ম নেবে,
+        কিছু গল্প নিজের পথ খুঁজে নেবে,
+        আর কিছু উপন্যাস ধীরে ধীরে
+        তাদের পূর্ণতা পাবে।
+      </p>
+
+      <p class="intro-signature">
+        প্রতিটি শব্দের পেছনে একটি গল্প আছে।
+      </p>
+
+    </div>
+
+  </div>
+
+</section>
+
+<!-- FEATURED -->
+
+<section class="featured">
+
+  <div class="container">
+
+    <div class="section-heading">
+
+      <small>EDITOR'S CORNER</small>
+
+      <h2>বিশেষ লেখা</h2>
+
+      <p>কিছু অনুভূতি, কিছু না বলা কথা</p>
+
+    </div>
+
+    <article class="featured-card">
+
+      <div class="featured-art">
+        ❦
       </div>
 
-      <div class="about">
-        আমি তোমাদের কেউ না, 
-        আমি তোমাদের কাছের কেউ নয়—দূর বহুদূরের কেউ! আমার স্পর্শ পেতে তোমাদের অপেক্ষা করতে হবে বারো বিলিয়ন বছর। 
-        আমার কাছে পৌছানোর পথ তোমাদের কাছে নেই কেননা—দূরত্ব, যা তোমাদের লেগে যাবে আটাশ বিলিয়ন আলোকবর্ষ!
+      <div class="featured-content">
+
+        <span class="tag">FEATURED POETRY</span>
+
+        <h3>যে কথাগুলো বলা হয়নি</h3>
+
+        <p>
+          কিছু কথা মানুষের কাছে বলা যায় না।
+          তারা নীরবতার ভেতরে জমে থাকে,
+          একদিন কবিতা হয়ে ফিরে আসে।
+        </p>
+
+        <a href="#writings" class="text-link">
+          আরও লেখা দেখুন →
+        </a>
 
       </div>
 
-    </section>
+    </article>
 
-    <section class="library" id="library">
+  </div>
 
-      <div class="section-title">
-        <h2>My Literary Library</h2>
-        <p>Explore the collection</p>
-      </div>
+</section>
 
-      <div class="cards">
+<!-- LIBRARY -->
 
-        <div class="card">
-          <div class="symbol">✧</div>
-          <h3>কবিতা</h3>
+<section class="library" id="library">
+
+  <div class="container">
+
+    <div class="section-heading">
+
+      <small>THE LITERARY COLLECTION</small>
+
+      <h2>সাহিত্যের সংগ্রহ</h2>
+
+      <p>তিনটি আলাদা জগৎ, একটি ঠিকানা</p>
+
+    </div>
+
+    <div class="cards">
+
+      <article class="card">
+
+        <div class="card-icon">✧</div>
+
+        <h3>কবিতা</h3>
+
+        <p>
+          বিরহ, ভালোবাসা, স্মৃতি
+          এবং জীবনের নানা অনুভূতি।
+          প্রতিটি কবিতা একটি আলাদা গল্প।
+        </p>
+
+        <a href="#writings" class="text-link">
+          কবিতা পড়ুন →
+        </a>
+
+      </article>
+
+      <article class="card">
+
+        <div class="card-icon">❦</div>
+
+        <h3>গল্প</h3>
+
+        <p>
+          ছোট ছোট মুহূর্ত,
+          অচেনা মানুষ এবং
+          জীবনের না বলা গল্প।
+        </p>
+
+        <a href="#writings" class="text-link">
+          গল্প পড়ুন →
+        </a>
+
+      </article>
+
+      <article class="card">
+
+        <div class="card-icon">✦</div>
+
+        <h3>উপন্যাস</h3>
+
+        <p>
+          দীর্ঘ অনুভূতি,
+          চরিত্রের জীবন এবং
+          অধ্যায় ধরে এগিয়ে যাওয়া গল্প।
+        </p>
+
+        <a href="#writings" class="text-link">
+          উপন্যাস দেখুন →
+        </a>
+
+      </article>
+
+    </div>
+
+  </div>
+
+</section>
+
+<!-- WRITINGS -->
+
+<section class="writings" id="writings">
+
+  <div class="container">
+
+    <div class="section-heading">
+
+      <small>FROM MY DESK</small>
+
+      <h2>নতুন লেখা</h2>
+
+      <p>আমার লেখার জগৎ থেকে কিছু অংশ</p>
+
+    </div>
+
+    <div class="writing-list">
+
+      <article class="writing-item">
+
+        <div>
+
+          <span class="writing-type">POETRY</span>
+
+          <h3>কিছু অনুভূতি থেকে যায়</h3>
+
           <p>
-            কিছু অনুভূতি কবিতার
-            পাতায় চিরকাল বেঁচে থাকে।
+            কিছু অনুভূতি কখনো শেষ হয় না,
+            শুধু নীরব হয়ে যায়।
           </p>
+
         </div>
 
-        <div class="card">
-          <div class="symbol">❦</div>
-          <h3>গল্প</h3>
+        <span>✧</span>
+
+      </article>
+
+      <article class="writing-item">
+
+        <div>
+
+          <span class="writing-type">SHORT STORY</span>
+
+          <h3>একটি অসমাপ্ত গল্প</h3>
+
           <p>
-            জীবনের ছোট ছোট মুহূর্ত
-            থেকে জন্ম নেওয়া গল্প।
+            কিছু গল্পের শেষ লেখা হয় না,
+            তারা মানুষের মনে থেকে যায়।
           </p>
+
         </div>
 
-        <div class="card">
-          <div class="symbol">✦</div>
-          <h3>উপন্যাস</h3>
+        <span>❦</span>
+
+      </article>
+
+      <article class="writing-item">
+
+        <div>
+
+          <span class="writing-type">NOVEL</span>
+
+          <h3>অচেনা এক পৃথিবী</h3>
+
           <p>
-            দীর্ঘ অনুভূতি, অসংখ্য অধ্যায়
-            আর এক একটি জীবনের গল্প।
+            একটি নতুন গল্প,
+            যার প্রতিটি অধ্যায়
+            নতুন কিছু বলবে।
           </p>
+
         </div>
 
-      </div>
+        <span>✦</span>
 
-    </section>
+      </article>
 
-    <section>
+    </div>
 
-      <div class="quote">
-        “কিছু মানুষ গল্প হয়ে যায়,
-        কিছু গল্প কবিতা হয়ে বেঁচে থাকে।”
-      </div>
+  </div>
 
-    </section>
+</section>
 
-  </main>
+<!-- QUOTE -->
 
-  <footer>
-    © 2026 EARENDEL
-    <br>
-    A World of Words
-  </footer>
+<section class="quote-section">
+
+  <div class="container">
+
+    <p class="quote">
+      “কিছু মানুষ স্মৃতি হয়ে যায়,
+      কিছু স্মৃতি কবিতা হয়ে বেঁচে থাকে,
+      আর কিছু শব্দ কখনো হারিয়ে যায় না।”
+    </p>
+
+    <small>— EARENDEL</small>
+
+  </div>
+
+</section>
+
+<!-- ABOUT -->
+
+<section class="about" id="about">
+
+  <div class="container">
+
+    <div class="section-heading">
+
+      <small>BEHIND THE WORDS</small>
+
+      <h2>লেখকের কথা</h2>
+
+      <p>About the Writer</p>
+
+    </div>
+
+    <div class="about-content">
+
+      <p>
+        আমি একজন লেখালেখি ভালোবাসা মানুষ।
+        কবিতা, গল্প এবং উপন্যাসের
+        মাধ্যমে নিজের অনুভূতি প্রকাশ করতে ভালোবাসি।
+      </p>
+
+      <p>
+        EARENDEL তৈরি করেছি আমার
+        লেখাগুলো এক জায়গায় রাখার জন্য।
+        এখানে আমার প্রতিটি লেখা
+        নিজের মতো করে একটি জায়গা পাবে।
+      </p>
+
+      <p>
+        এই পৃথিবীতে অনেক কথা বলা হয়,
+        কিন্তু কিছু কথা শুধু লেখার মধ্যেই
+        সবচেয়ে সুন্দরভাবে বেঁচে থাকে।
+      </p>
+
+    </div>
+
+  </div>
+
+</section>
+
+<!-- CONTACT -->
+
+<section class="contact" id="contact">
+
+  <div class="container">
+
+    <div class="section-heading">
+
+      <small>LET'S CONNECT</small>
+
+      <h2>যোগাযোগ</h2>
+
+      <p>
+        আপনার পড়া, অনুভূতি কিংবা
+        মতামত আমার কাছে মূল্যবান।
+      </p>
+
+    </div>
+
+    <a href="#home" class="btn">
+      ফিরে যান
+    </a>
+
+  </div>
+
+</section>
+
+</main>
+
+<!-- FOOTER -->
+
+<footer>
+
+  <div class="footer-logo">
+    EARENDEL
+  </div>
+
+  <p>A World of Words</p>
+
+  <div class="footer-links">
+
+    <a href="#home">Home</a>
+
+    <a href="#library">Library</a>
+
+    <a href="#about">About</a>
+
+    <a href="#contact">Contact</a>
+
+  </div>
+
+  <div class="copyright">
+
+    <p>
+      © 2026 EARENDEL.
+      All rights reserved.
+    </p>
+
+    <p>
+      Built with words and feelings.
+    </p>
+
+  </div>
+
+</footer>
 
 </body>
 </html>
