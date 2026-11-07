@@ -5,15 +5,283 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>EARENDEL | সাহিত্য ও অনুভূতি</title>
+  <title>EARENDEL — A Writer's World</title>
 
-  <!-- CSS Connect -->
   <link rel="stylesheet" href="styles.css">
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background: #101010;
+      color: #f5f1eb;
+      font-family: Georgia, "Noto Serif Bengali", serif;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .navbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 28px 8%;
+      border-bottom: 1px solid #292929;
+    }
+
+    .logo {
+      font-size: 25px;
+      letter-spacing: 5px;
+      font-weight: bold;
+    }
+
+    nav {
+      display: flex;
+      gap: 28px;
+    }
+
+    nav a {
+      color: #aaa;
+      font-size: 13px;
+      transition: 0.3s;
+    }
+
+    nav a:hover {
+      color: white;
+    }
+
+    .hero {
+      padding: 120px 8% 110px;
+      max-width: 1250px;
+      margin: auto;
+    }
+
+    .subtitle {
+      color: #a18b70;
+      font-size: 11px;
+      letter-spacing: 4px;
+      margin-bottom: 25px;
+    }
+
+    .hero h1 {
+      font-size: clamp(42px, 7vw, 86px);
+      line-height: 1.3;
+      font-weight: normal;
+      max-width: 900px;
+    }
+
+    .hero h1 span {
+      color: #a18b70;
+    }
+
+    .hero-description {
+      color: #999;
+      font-size: 16px;
+      line-height: 2;
+      max-width: 500px;
+      margin-top: 28px;
+    }
+
+    .hero-buttons {
+      display: flex;
+      gap: 15px;
+      margin-top: 38px;
+      flex-wrap: wrap;
+    }
+
+    .button {
+      display: inline-block;
+      padding: 14px 25px;
+      border: 1px solid #51483e;
+      font-size: 13px;
+      transition: 0.3s;
+    }
+
+    .button:hover {
+      background: #a18b70;
+      color: #101010;
+    }
+
+    .section {
+      padding: 75px 8%;
+      border-top: 1px solid #292929;
+    }
+
+    .section-heading {
+      display: flex;
+      justify-content: space-between;
+      align-items: end;
+      gap: 20px;
+      margin-bottom: 35px;
+    }
+
+    .section-heading h2 {
+      font-size: 34px;
+      font-weight: normal;
+    }
+
+    .section-heading p {
+      color: #888;
+      font-size: 12px;
+    }
+
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+
+    .card {
+      display: block;
+      padding: 32px;
+      min-height: 220px;
+      border: 1px solid #292929;
+      background: #151515;
+      transition: 0.3s;
+    }
+
+    .card:hover {
+      border-color: #a18b70;
+      transform: translateY(-4px);
+    }
+
+    .card-number {
+      color: #a18b70;
+      font-size: 12px;
+    }
+
+    .card h3 {
+      font-size: 25px;
+      font-weight: normal;
+      margin: 35px 0 15px;
+    }
+
+    .card p {
+      color: #999;
+      font-size: 13px;
+      line-height: 1.8;
+    }
+
+    .card span:last-child {
+      display: block;
+      color: #a18b70;
+      font-size: 12px;
+      margin-top: 25px;
+    }
+
+    .featured {
+      background: #171717;
+      padding: 75px 8%;
+    }
+
+    .featured-content {
+      max-width: 800px;
+    }
+
+    .featured h2 {
+      font-size: 36px;
+      font-weight: normal;
+      margin-bottom: 25px;
+    }
+
+    .featured p {
+      color: #aaa;
+      line-height: 2;
+      font-size: 15px;
+    }
+
+    .featured a {
+      display: inline-block;
+      margin-top: 25px;
+      color: #a18b70;
+      font-size: 13px;
+    }
+
+    .about {
+      display: grid;
+      grid-template-columns: 1fr 1.5fr;
+      gap: 60px;
+      align-items: start;
+    }
+
+    .about h2 {
+      font-size: 34px;
+      font-weight: normal;
+    }
+
+    .about p {
+      color: #999;
+      font-size: 15px;
+      line-height: 2;
+    }
+
+    footer {
+      border-top: 1px solid #292929;
+      padding: 35px 8%;
+      display: flex;
+      justify-content: space-between;
+      color: #777;
+      font-size: 12px;
+      gap: 20px;
+    }
+
+    @media (max-width: 700px) {
+      .navbar {
+        padding: 22px 6%;
+        align-items: flex-start;
+        flex-direction: column;
+        gap: 20px;
+      }
+
+      nav {
+        gap: 17px;
+        flex-wrap: wrap;
+      }
+
+      nav a {
+        font-size: 12px;
+      }
+
+      .hero {
+        padding: 85px 6%;
+      }
+
+      .section,
+      .featured {
+        padding: 60px 6%;
+      }
+
+      .cards {
+        grid-template-columns: 1fr;
+      }
+
+      .section-heading {
+        align-items: flex-start;
+        flex-direction: column;
+      }
+
+      .about {
+        grid-template-columns: 1fr;
+        gap: 25px;
+      }
+
+      footer {
+        flex-direction: column;
+      }
+    }
+  </style>
 </head>
 
 <body>
 
   <header class="navbar">
+
     <a href="index.html" class="logo">EARENDEL</a>
 
     <nav>
@@ -23,63 +291,158 @@
       <a href="novels.html">Novels</a>
       <a href="about.html">About</a>
     </nav>
+
   </header>
 
   <main>
 
     <section class="hero">
-      <p class="subtitle">A WORLD OF WORDS & EMOTIONS</p>
+
+      <p class="subtitle">THE WORLD OF WORDS</p>
 
       <h1>
-        কিছু অনুভূতি<br>
-        <span>শুধু শব্দেই বেঁচে থাকে।</span>
+        Words that feel.<br>
+        <span>Stories that stay.</span>
       </h1>
 
-      <p>
-        EARENDEL — কবিতা, গল্প আর উপন্যাসের
-        এক নীরব পৃথিবী।
+      <p class="hero-description">
+        কিছু অনুভূতি কখনো বলা যায় না।
+        কিছু গল্প কখনো শেষ হয় না।
+        EARENDEL — সেই অনুভূতি আর গল্পগুলোর
+        জন্য একটি ছোট্ট পৃথিবী।
       </p>
 
       <div class="hero-buttons">
-        <a href="poetry.html" class="button">কবিতা পড়ুন</a>
-        <a href="stories.html" class="button">গল্পের জগৎ</a>
+        <a href="poetry.html" class="button">
+          Explore Poetry ↗
+        </a>
+
+        <a href="stories.html" class="button">
+          Discover Stories ↗
+        </a>
       </div>
+
     </section>
 
-    <section class="featured">
-      <p class="subtitle">WELCOME TO EARENDEL</p>
+    <section class="section">
 
-      <h2>শব্দের মাঝে নিজের পৃথিবী খুঁজে নিন।</h2>
+      <div class="section-heading">
 
-      <p>
-        এখানে প্রতিটি কবিতা একটি অনুভূতি,
-        প্রতিটি গল্প একটি নতুন জীবন,
-        আর প্রতিটি উপন্যাস একটি অন্যরকম পৃথিবী।
-      </p>
-    </section>
+        <div>
+          <p class="subtitle">A COLLECTION OF WORDS</p>
+          <h2>Explore the Library</h2>
+        </div>
 
-    <section class="writings">
+        <p>Poetry · Stories · Novels</p>
 
-      <h2>Explore The Library</h2>
+      </div>
 
       <div class="cards">
 
         <a href="poetry.html" class="card">
+
+          <span class="card-number">01 / POETRY</span>
+
           <h3>কবিতা</h3>
-          <p>ভালোবাসা, বিরহ ও জীবনের অনুভূতি।</p>
-          <span>Explore Poetry →</span>
+
+          <p>
+            ভালোবাসা, বিরহ আর জীবনের
+            না বলা অনুভূতিগুলো।
+          </p>
+
+          <span>Read Poetry ↗</span>
+
         </a>
 
         <a href="stories.html" class="card">
+
+          <span class="card-number">02 / STORIES</span>
+
           <h3>গল্প</h3>
-          <p>ছোট ছোট গল্পে লুকিয়ে থাকা বড় অনুভূতি।</p>
-          <span>Explore Stories →</span>
+
+          <p>
+            ছোট ছোট গল্পে লুকিয়ে থাকা
+            জীবনের বড় কিছু সত্য।
+          </p>
+
+          <span>Read Stories ↗</span>
+
         </a>
 
         <a href="novels.html" class="card">
+
+          <span class="card-number">03 / NOVELS</span>
+
           <h3>উপন্যাস</h3>
-          <p>একটি গল্পের ভেতর দিয়ে অন্য পৃথিবীতে যাত্রা।</p>
-          <span>Explore Novels →</span>
+
+          <p>
+            এমন কিছু পৃথিবী, যেখানে
+            প্রতিটি অধ্যায় নতুন অনুভূতি।
+          </p>
+
+          <span>Explore Novels ↗</span>
+
+        </a>
+
+      </div>
+
+    </section>
+
+    <section class="featured">
+
+      <div class="featured-content">
+
+        <p class="subtitle">A THOUGHT TO REMEMBER</p>
+
+        <h2>
+          “কিছু মানুষ গল্প হয়ে যায়,<br>
+          আর কিছু গল্প মানুষ হয়ে থাকে।”
+        </h2>
+
+        <p>
+          প্রতিটি লেখার পেছনে থাকে একটি অনুভূতি।
+          প্রতিটি অনুভূতির পেছনে থাকে একটি গল্প।
+          এখানে সেই গল্পগুলো শব্দের মাধ্যমে
+          বেঁচে থাকবে।
+        </p>
+
+        <a href="poetry.html">Discover the writings ↗</a>
+
+      </div>
+
+    </section>
+
+    <section class="section about">
+
+      <div>
+
+        <p class="subtitle">ABOUT EARENDEL</p>
+
+        <h2>
+          A little world<br>
+          made of words.
+        </h2>
+
+      </div>
+
+      <div>
+
+        <p>
+          EARENDEL একটি সাহিত্যভিত্তিক ব্যক্তিগত
+          ওয়েবসাইট। এখানে কবিতা, গল্প ও উপন্যাসের
+          মাধ্যমে অনুভূতি, স্মৃতি ও কল্পনার
+          পৃথিবী তুলে ধরা হবে।
+        </p>
+
+        <p style="margin-top:20px">
+          প্রতিটি লেখা একটি নতুন যাত্রা।
+          আর প্রতিটি পাঠক সেই যাত্রার
+          একটি অংশ।
+        </p>
+
+        <a href="about.html"
+           style="display:inline-block;margin-top:25px;color:#a18b70">
+          About the Writer ↗
         </a>
 
       </div>
@@ -89,8 +452,11 @@
   </main>
 
   <footer>
+
     <p>© 2026 EARENDEL</p>
-    <p>Made with words & emotions.</p>
+
+    <p>A world made of words & emotions.</p>
+
   </footer>
 
 </body>
