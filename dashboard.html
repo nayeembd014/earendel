@@ -1,1 +1,439 @@
 
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>EARENDEL | Dashboard</title>
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Noto+Serif+Bengali:wght@400;500;600&family=Cormorant+Garamond:wght@400;500;600&display=swap');
+
+*{box-sizing:border-box;margin:0;padding:0}
+
+body{
+ background:#090a0e;
+ color:#eee9df;
+ font-family:'Noto Serif Bengali',serif;
+}
+
+header{
+ padding:20px 6%;
+ display:flex;
+ justify-content:space-between;
+ align-items:center;
+ border-bottom:1px solid #302a21;
+}
+
+.logo{
+ color:#d6b875;
+ font:30px 'Cormorant Garamond',serif;
+ letter-spacing:4px;
+}
+
+button{
+ cursor:pointer;
+ font-family:inherit;
+}
+
+.logout{
+ background:transparent;
+ color:#d6b875;
+ border:1px solid #75603e;
+ padding:9px 18px;
+}
+
+.container{
+ max-width:1100px;
+ margin:auto;
+ padding:40px 20px;
+}
+
+h1{
+ font:42px 'Cormorant Garamond',serif;
+ color:#d6b875;
+}
+
+.sub{
+ color:#aaa69e;
+ margin:8px 0 30px;
+}
+
+.stats{
+ display:grid;
+ grid-template-columns:repeat(auto-fit,minmax(150px,1fr));
+ gap:15px;
+ margin-bottom:30px;
+}
+
+.stat,.panel,.post{
+ background:#14151a;
+ border:1px solid #302a21;
+ padding:20px;
+ border-radius:5px;
+}
+
+.stat span{
+ color:#aaa69e;
+ font-size:13px;
+}
+
+.stat h2{
+ color:#d6b875;
+ font-size:30px;
+ margin-top:8px;
+}
+
+.panel h2{
+ color:#d6b875;
+ font-size:23px;
+ font-weight:400;
+ margin-bottom:20px;
+}
+
+input,textarea,select{
+ width:100%;
+ padding:13px;
+ margin-bottom:15px;
+ background:#090a0e;
+ border:1px solid #39352e;
+ color:white;
+ outline:none;
+ font-family:inherit;
+}
+
+textarea{
+ min-height:190px;
+ resize:vertical;
+ line-height:1.9;
+}
+
+input:focus,textarea:focus,select:focus{
+ border-color:#c7a86b;
+}
+
+.primary{
+ background:#c7a86b;
+ color:#090a0e;
+ border:0;
+ padding:12px 22px;
+}
+
+.secondary{
+ background:transparent;
+ color:#d6b875;
+ border:1px solid #75603e;
+ padding:10px 18px;
+}
+
+.danger{
+ background:transparent;
+ color:#e58b8b;
+ border:1px solid #854d4d;
+ padding:9px 15px;
+}
+
+.actions{
+ display:flex;
+ gap:10px;
+ flex-wrap:wrap;
+}
+
+#message{
+ color:#d6b875;
+ margin:15px 0;
+ font-size:14px;
+}
+
+.posts{
+ display:grid;
+ gap:15px;
+ margin-top:20px;
+}
+
+.post h3{
+ color:#d6b875;
+ margin-bottom:10px;
+}
+
+.post p{
+ color:#aaa69e;
+ white-space:pre-line;
+ line-height:1.8;
+ margin-bottom:15px;
+}
+
+.meta{
+ color:#8f887c;
+ font-size:12px;
+ margin-bottom:12px;
+}
+
+footer{
+ text-align:center;
+ padding:30px;
+ color:#77736c;
+ font-size:12px;
+}
+
+@media(max-width:600px){
+ header{padding:18px 5%}
+ h1{font-size:34px}
+ .container{padding:25px 15px}
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <div class="logo">EARENDEL</div>
+  <button class="logout" id="logout">Logout</button>
+</header>
+
+<main class="container">
+
+  <h1>Welcome to Dashboard</h1>
+  <p class="sub">তোমার সাহিত্যজগত, তোমার নিয়ন্ত্রণ।</p>
+
+  <section class="stats">
+    <div class="stat">
+      <span>মোট লেখা</span>
+      <h2 id="total">0</h2>
+    </div>
+    <div class="stat">
+      <span>Published</span>
+      <h2 id="published">0</h2>
+    </div>
+    <div class="stat">
+      <span>Draft</span>
+      <h2 id="draft">0</h2>
+    </div>
+  </section>
+
+  <section class="panel">
+    <h2 id="formTitle">নতুন লেখা যোগ করো</h2>
+
+    <form id="postForm">
+      <input type="hidden" id="postId">
+
+      <input id="title" type="text"
+        placeholder="লেখার নাম" required>
+
+      <select id="category">
+        <option value="poetry">কবিতা</option>
+        <option value="stories">গল্প</option>
+        <option value="novels">উপন্যাস</option>
+      </select>
+
+      <textarea id="content"
+        placeholder="তোমার লেখাটি এখানে লিখো..."
+        required></textarea>
+
+      <select id="status">
+        <option value="draft">Draft হিসেবে রাখো</option>
+        <option value="published">Publish করো</option>
+      </select>
+
+      <div class="actions">
+        <button class="primary" type="submit" id="saveBtn">
+          Save Content
+        </button>
+        <button class="secondary" type="button" id="cancelBtn">
+          Cancel Edit
+        </button>
+      </div>
+    </form>
+
+    <p id="message"></p>
+  </section>
+
+  <section style="margin-top:40px">
+    <h2 style="color:#d6b875;font-weight:400">
+      তোমার সকল লেখা
+    </h2>
+    <div class="posts" id="posts"></div>
+  </section>
+
+</main>
+
+<footer>© 2026 EARENDEL · Private Admin Dashboard</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="config.js"></script>
+
+<script>
+const db = window.supabase.createClient(
+  SUPABASE_URL,
+  SUPABASE_PUBLISHABLE_KEY
+);
+
+const form = document.getElementById('postForm');
+const message = document.getElementById('message');
+const postsBox = document.getElementById('posts');
+
+let currentUser = null;
+
+async function startDashboard(){
+  const {data:{user},error} = await db.auth.getUser();
+
+  if(error || !user){
+    location.href = 'admin.html';
+    return;
+  }
+
+  const {data:profile,error:profileError} = await db
+    .from('profiles')
+    .select('role')
+    .eq('id',user.id)
+    .single();
+
+  if(profileError || !['owner','admin','editor'].includes(profile.role)){
+    await db.auth.signOut();
+    location.href = 'admin.html';
+    return;
+  }
+
+  currentUser = user;
+  await loadPosts();
+}
+
+async function loadPosts(){
+  const {data,error} = await db
+    .from('posts')
+    .select('*')
+    .order('created_at',{ascending:false});
+
+  if(error){
+    message.textContent = error.message;
+    return;
+  }
+
+  document.getElementById('total').textContent = data.length;
+  document.getElementById('published').textContent =
+    data.filter(p => p.status === 'published').length;
+  document.getElementById('draft').textContent =
+    data.filter(p => p.status === 'draft').length;
+
+  postsBox.replaceChildren();
+
+  data.forEach(post => {
+    const card = document.createElement('article');
+    card.className = 'post';
+
+    const heading = document.createElement('h3');
+    heading.textContent = post.title;
+
+    const meta = document.createElement('div');
+    meta.className = 'meta';
+    meta.textContent =
+      post.category + ' · ' + post.status;
+
+    const content = document.createElement('p');
+    content.textContent = post.content;
+
+    const actions = document.createElement('div');
+    actions.className = 'actions';
+
+    const edit = document.createElement('button');
+    edit.className = 'secondary';
+    edit.textContent = 'Edit';
+    edit.addEventListener('click',() => editPost(post));
+
+    const remove = document.createElement('button');
+    remove.className = 'danger';
+    remove.textContent = 'Delete';
+    remove.addEventListener('click',() => deletePost(post.id));
+
+    actions.append(edit,remove);
+    card.append(heading,meta,content,actions);
+    postsBox.append(card);
+  });
+
+  if(data.length === 0){
+    const empty = document.createElement('p');
+    empty.textContent = 'এখনো কোনো লেখা যোগ করা হয়নি।';
+    postsBox.append(empty);
+  }
+}
+
+form.addEventListener('submit',async function(e){
+  e.preventDefault();
+
+  const id = document.getElementById('postId').value;
+
+  const post = {
+    title:document.getElementById('title').value.trim(),
+    category:document.getElementById('category').value,
+    content:document.getElementById('content').value.trim(),
+    status:document.getElementById('status').value,
+    updated_at:new Date().toISOString()
+  };
+
+  if(!post.title || !post.content) return;
+
+  const saveBtn = document.getElementById('saveBtn');
+  saveBtn.disabled = true;
+  message.textContent = 'Saving...';
+
+  const result = id
+    ? await db.from('posts').update(post).eq('id',id)
+    : await db.from('posts').insert(post);
+
+  saveBtn.disabled = false;
+
+  if(result.error){
+    message.textContent = result.error.message;
+    return;
+  }
+
+  message.textContent = 'লেখাটি সফলভাবে সংরক্ষণ হয়েছে!';
+  resetForm();
+  await loadPosts();
+});
+
+function editPost(post){
+  document.getElementById('postId').value = post.id;
+  document.getElementById('title').value = post.title;
+  document.getElementById('category').value = post.category;
+  document.getElementById('content').value = post.content;
+  document.getElementById('status').value = post.status;
+  document.getElementById('formTitle').textContent = 'লেখা Edit করো';
+  document.getElementById('saveBtn').textContent = 'Update Content';
+
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+
+async function deletePost(id){
+  if(!confirm('তুমি কি নিশ্চিত লেখাটি Delete করতে চাও?')) return;
+
+  const {error} = await db.from('posts').delete().eq('id',id);
+
+  if(error){
+    message.textContent = error.message;
+    return;
+  }
+
+  message.textContent = 'লেখাটি Delete হয়েছে।';
+  await loadPosts();
+}
+
+function resetForm(){
+  form.reset();
+  document.getElementById('postId').value = '';
+  document.getElementById('formTitle').textContent = 'নতুন লেখা যোগ করো';
+  document.getElementById('saveBtn').textContent = 'Save Content';
+}
+
+document.getElementById('cancelBtn').addEventListener('click',resetForm);
+
+document.getElementById('logout').addEventListener('click',async()=>{
+  await db.auth.signOut();
+  location.href = 'admin.html';
+});
+
+startDashboard();
+</script>
+
+</body>
+</html>
