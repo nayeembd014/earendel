@@ -1,1 +1,485 @@
 
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>About EARENDEL — A Star Beyond Time</title>
+<link rel="stylesheet" href="styles.css">
+
+<style>
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: #05070c;
+  color: #eee5d7;
+  font-family: Georgia, "Noto Serif Bengali", serif;
+}
+
+.about-page {
+  overflow: hidden;
+  background:
+    radial-gradient(ellipse at 25% 25%, #17243a 0%, transparent 40%),
+    radial-gradient(ellipse at 80% 65%, #171326 0%, transparent 40%),
+    #05070c;
+}
+
+.about-nav {
+  min-height: 82px;
+  padding: 18px 7%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+  border-bottom: 1px solid rgba(206,169,108,.22);
+  background: rgba(3,5,10,.85);
+}
+
+.about-logo {
+  color: #d8b77e;
+  font-size: 25px;
+  letter-spacing: 5px;
+  text-decoration: none;
+}
+
+.about-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 28px;
+}
+
+.about-links a {
+  color: #d8d0c3;
+  text-decoration: none;
+  font-size: 14px;
+  transition: .3s;
+}
+
+.about-links a:hover,
+.about-links a.active {
+  color: #d9b779;
+}
+
+.about-hero {
+  min-height: 690px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+  padding: 65px 7%;
+  gap: 55px;
+}
+
+.cosmos-art {
+  min-height: 540px;
+  position: relative;
+  border-radius: 48% 48% 8px 8px;
+  overflow: hidden;
+  background:
+    radial-gradient(ellipse at 52% 42%, rgba(255,202,127,.2), transparent 8%),
+    radial-gradient(ellipse at 52% 42%, rgba(117,103,183,.3), transparent 25%),
+    radial-gradient(ellipse at 50% 45%, #28334b 0%, #10192a 35%, #080d18 70%, #03060c 100%);
+  box-shadow: 0 0 100px rgba(145,120,190,.12);
+}
+
+.cosmos-art:before {
+  content: "";
+  position: absolute;
+  width: 95%;
+  height: 40%;
+  left: 3%;
+  top: 30%;
+  border-radius: 50%;
+  border: 2px solid rgba(226,181,119,.22);
+  transform: rotate(-25deg);
+  box-shadow: 0 0 35px rgba(211,162,105,.18);
+}
+
+.cosmos-art:after {
+  content: "";
+  position: absolute;
+  width: 75%;
+  height: 28%;
+  left: 12%;
+  top: 35%;
+  border-radius: 50%;
+  border: 1px solid rgba(175,165,220,.28);
+  transform: rotate(-25deg);
+}
+
+.star-core {
+  position: absolute;
+  top: 37%;
+  left: 48%;
+  width: 13px;
+  height: 13px;
+  border-radius: 50%;
+  background: #fff4d5;
+  box-shadow:
+    0 0 12px 5px #ffe2a8,
+    0 0 35px 15px rgba(255,191,112,.65),
+    0 0 100px 45px rgba(255,183,103,.25);
+  z-index: 2;
+}
+
+.star-core:before,
+.star-core:after {
+  content: "";
+  position: absolute;
+  background: rgba(255,236,197,.9);
+  left: 50%;
+  top: -60px;
+  width: 1px;
+  height: 130px;
+  transform: translateX(-50%);
+}
+
+.star-core:after {
+  transform: translateX(-50%) rotate(90deg);
+}
+
+.star-label {
+  position: absolute;
+  top: 54%;
+  left: 50%;
+  transform: translateX(-50%);
+  color: #e6c58f;
+  letter-spacing: 5px;
+  font-size: 12px;
+  white-space: nowrap;
+  z-index: 3;
+}
+
+.art-caption {
+  position: absolute;
+  bottom: 25px;
+  left: 0;
+  right: 0;
+  text-align: center;
+  color: #c2b6a6;
+  font-size: 12px;
+  letter-spacing: 2px;
+}
+
+.about-copy {
+  max-width: 600px;
+}
+
+.eyebrow {
+  color: #d6ae70;
+  letter-spacing: 5px;
+  font-size: 12px;
+  text-transform: uppercase;
+}
+
+.about-copy h1 {
+  font-size: clamp(48px, 7vw, 86px);
+  font-weight: 400;
+  letter-spacing: 5px;
+  margin: 20px 0 8px;
+  color: #e8d4b3;
+}
+
+.about-subtitle {
+  color: #d3ad79;
+  font-style: italic;
+  font-size: 22px;
+  margin-bottom: 32px;
+}
+
+.gold-line {
+  height: 1px;
+  width: 100%;
+  margin: 25px 0;
+  background: linear-gradient(90deg, transparent, #b9935c, transparent);
+}
+
+.about-copy p {
+  font-size: 16px;
+  line-height: 2.15;
+  color: #d5cbbb;
+}
+
+.about-quote {
+  margin-top: 28px;
+  color: #d9b47e;
+  font-size: 20px;
+  font-style: italic;
+  line-height: 1.8;
+}
+
+.meaning-section {
+  padding: 90px 8%;
+  text-align: center;
+  background: linear-gradient(180deg, transparent, rgba(24,27,43,.65), transparent);
+}
+
+.section-label {
+  color: #cba66f;
+  letter-spacing: 4px;
+  font-size: 12px;
+}
+
+.meaning-section h2 {
+  font-size: clamp(30px, 5vw, 48px);
+  font-weight: 400;
+  margin: 22px 0;
+}
+
+.meaning-section p {
+  max-width: 780px;
+  margin: auto;
+  color: #c9c0b4;
+  line-height: 2.1;
+  font-size: 16px;
+}
+
+.world-section {
+  padding: 65px 7% 100px;
+  text-align: center;
+}
+
+.world-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 22px;
+  max-width: 1050px;
+  margin: 45px auto 0;
+}
+
+.world-card {
+  padding: 38px 22px;
+  border: 1px solid rgba(207,169,108,.28);
+  background: rgba(255,255,255,.025);
+  transition: .35s;
+  text-decoration: none;
+  color: #eee5d7;
+}
+
+.world-card:hover {
+  transform: translateY(-8px);
+  border-color: #d2ad75;
+  background: rgba(210,173,117,.07);
+}
+
+.world-icon {
+  color: #d6b27b;
+  font-size: 35px;
+}
+
+.world-card h3 {
+  font-weight: 400;
+  font-size: 24px;
+  margin: 17px 0 10px;
+}
+
+.world-card p {
+  color: #bcb2a5;
+  font-size: 14px;
+  line-height: 1.8;
+}
+
+.final-message {
+  padding: 90px 20px;
+  text-align: center;
+  background:
+    radial-gradient(ellipse at center, rgba(126,91,139,.15), transparent 65%);
+}
+
+.final-message h2 {
+  font-size: clamp(25px, 4vw, 40px);
+  font-weight: 400;
+  color: #e1c59b;
+  font-style: italic;
+  line-height: 1.6;
+}
+
+.final-message p {
+  color: #bca98e;
+  letter-spacing: 4px;
+  font-size: 12px;
+  margin-top: 25px;
+}
+
+.about-footer {
+  text-align: center;
+  padding: 25px;
+  border-top: 1px solid rgba(206,169,108,.2);
+  color: #9c9285;
+  font-size: 12px;
+  letter-spacing: 2px;
+}
+
+@media(max-width:850px) {
+  .about-hero {
+    grid-template-columns: 1fr;
+    padding: 40px 6%;
+  }
+
+  .cosmos-art {
+    min-height: 420px;
+  }
+
+  .about-copy {
+    text-align: center;
+    margin: auto;
+  }
+
+  .about-links {
+    gap: 12px;
+    justify-content: center;
+  }
+
+  .about-nav {
+    flex-direction: column;
+  }
+}
+
+@media(max-width:600px) {
+  .world-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .about-links a {
+    font-size: 12px;
+  }
+
+  .about-logo {
+    font-size: 21px;
+  }
+
+  .cosmos-art {
+    min-height: 340px;
+  }
+}
+</style>
+</head>
+
+<body>
+<div class="about-page">
+
+<header class="about-nav">
+  <a class="about-logo" href="index.html">✧ EARENDEL</a>
+
+  <nav class="about-links">
+    <a href="index.html">Home</a>
+    <a href="poetry.html">Poetry</a>
+    <a href="stories.html">Stories</a>
+    <a href="novels.html">Novels</a>
+    <a href="about.html" class="active">About</a>
+  </nav>
+</header>
+
+<main>
+
+<section class="about-hero">
+
+  <div class="cosmos-art" aria-label="Earendel নক্ষত্রের একটি শৈল্পিক মহাজাগতিক দৃশ্য">
+    <div class="star-core"></div>
+    <div class="star-label">✦ EARENDEL ✦</div>
+    <div class="art-caption">A LIGHT FROM THE DISTANT UNIVERSE</div>
+  </div>
+
+  <div class="about-copy">
+    <div class="eyebrow">A STORY BEYOND TIME</div>
+
+    <h1>EARENDEL</h1>
+
+    <div class="about-subtitle">
+      A Star Beyond Time, A World of Words...
+    </div>
+
+    <div class="gold-line"></div>
+
+    <p>
+      মহাবিশ্বের অসীম অন্ধকারে এমন কিছু আলো আছে,
+      যাদের কাছে পৌঁছাতে আমাদের সময় লাগে কোটি কোটি বছর।
+      Earendel তেমনই এক দূরবর্তী নক্ষত্রের নাম।
+    </p>
+
+    <p>
+      এর আলো আমাদের কাছে পৌঁছাতে প্রায় ১২.৯ বিলিয়ন
+      বছর সময় নিয়েছে। এর নাম এসেছে Old English শব্দ
+      থেকে, যার অর্থ <strong>Morning Star — ভোরের তারা।</strong>
+    </p>
+
+    <div class="gold-line"></div>
+
+    <p>
+      সেই দূরবর্তী আলোর নাম থেকেই আমাদের এই ছোট্ট
+      সাহিত্যিক পৃথিবীর নাম — EARENDEL।
+      যেখানে শব্দেরা শুধু লেখা হয় না, অনুভব করা হয়।
+      যেখানে কবিতা, গল্প আর উপন্যাসের ভেতর দিয়ে
+      মানুষ খুঁজে পায় নিজের অজানা অনুভূতিগুলো।
+    </p>
+
+    <div class="about-quote">
+      “Because every word can be a star
+      in someone's sky.”
+    </div>
+  </div>
+
+</section>
+
+<section class="meaning-section">
+  <div class="section-label">OUR PHILOSOPHY</div>
+
+  <h2>Words. Worlds. Emotions.</h2>
+
+  <p>
+    আমরা বিশ্বাস করি, প্রতিটি মানুষের ভেতরেই একটি
+    অদেখা পৃথিবী আছে। সেখানে জমে থাকে হাজারো কথা,
+    অসমাপ্ত গল্প, কিছু হারানো স্মৃতি আর কিছু না বলা অনুভূতি।
+    EARENDEL সেই অনুভূতিগুলোর জন্যই একটি আশ্রয়।
+  </p>
+</section>
+
+<section class="world-section">
+  <div class="section-label">EXPLORE OUR WORLD</div>
+  <h2>একটি পৃথিবী, অসংখ্য অনুভূতি</h2>
+
+  <div class="world-grid">
+
+    <a href="poetry.html" class="world-card">
+      <div class="world-icon">✧</div>
+      <h3>Poetry</h3>
+      <p>কবিতার প্রতিটি শব্দে খুঁজে নাও নিজের অনুভূতি।</p>
+    </a>
+
+    <a href="stories.html" class="world-card">
+      <div class="world-icon">❧</div>
+      <h3>Stories</h3>
+      <p>ছোট ছোট গল্পে বেঁচে থাকুক জীবনের বড় মুহূর্তগুলো।</p>
+    </a>
+
+    <a href="novels.html" class="world-card">
+      <div class="world-icon">✦</div>
+      <h3>Novels</h3>
+      <p>উপন্যাসের পাতায় হারিয়ে যাও অন্য এক জগতে।</p>
+    </a>
+
+  </div>
+</section>
+
+<section class="final-message">
+  <div class="section-label">A MESSAGE TO YOU</div>
+
+  <h2>
+    “In the endless darkness,<br>
+    may you always find a little light.”
+  </h2>
+
+  <p>— WITH LOVE, EARENDEL</p>
+</section>
+
+</main>
+
+<footer class="about-footer">
+  EARENDEL · A WORLD OF WORDS AND FEELINGS
+</footer>
+
+</div>
+</body>
+</html>
